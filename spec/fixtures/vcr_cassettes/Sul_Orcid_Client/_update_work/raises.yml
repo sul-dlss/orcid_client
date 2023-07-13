@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.sandbox.orcid.org/v3.0/0000-0003-3437-349X/work/1754266
+    body:
+      encoding: UTF-8
+      string: '{"title":{"title":{"value":"Twitter Makes It Worse: Political Journalists,
+        Gendered Echo Chambers, and the Amplification of Gender Bias"},"subtitle":null,"translated-title":null},"journal-title":{"value":"The
+        International Journal of Press/Politics"},"short-description":null,"citation":{"citation-type":"bibtex","citation-value":"@article{Usher_2018,\n\tdoi
+        = {10.1177/1940161218781254},\n\turl = {https://doi.org/10.1177%2F1940161218781254},\n\tyear
+        = 2018,\n\tmonth = {jun},\n\tpublisher = {{SAGE} Publications},\n\tvolume
+        = {23},\n\tnumber = {3},\n\tpages = {324--344},\n\tauthor = {Nikki Usher and
+        Jesse Holcomb and Justin Littman},\n\ttitle = {Twitter Makes It Worse: Political
+        Journalists, Gendered Echo Chambers, and the Amplification of Gender Bias},\n\tjournal
+        = {The International Journal of Press/Politics}\n}"},"type":"journal-article","publication-date":{"year":{"value":"2018"},"month":{"value":"07"},"day":{"value":"24"}},"external-ids":{"external-id":[{"external-id-type":"doi","external-id-value":"10.1177/1940161218781254","external-id-normalized":{"value":"10.1177/1940161218781254","transient":true},"external-id-normalized-error":null,"external-id-url":{"value":"https://doi.org/10.1177/1940161218781254"},"external-id-relationship":"self"}]},"url":{"value":"https://doi.org/10.1177/1940161218781254"},"contributors":{"contributor":[{"contributor-orcid":null,"credit-name":{"value":"Nikki
+        Usher"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}},{"contributor-orcid":null,"credit-name":{"value":"Jesse
+        Holcomb"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}},{"contributor-orcid":null,"credit-name":{"value":"Justin
+        Littman"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}}]},"language-code":null,"country":null,"put-code":"1754266"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - stanford-library-sul-pub
+      Authorization:
+      - Bearer private_bearer_token
+      Content-Type:
+      - application/vnd.orcid+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Thu, 13 Jul 2023 19:17:11 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 7e63dd5c4d1882f6-IAD
+      Cf-Cache-Status:
+      - DYNAMIC
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Vary:
+      - accept-encoding
+      Www-Authenticate:
+      - 'Bearer realm="ORCID T2 API", error="invalid_token", error_description="Invalid
+        access token: private_bearer_token"'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Target:
+      - mapi-a1
+      X-Via:
+      - b1
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - cloudflare
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "error" : "invalid_token",
+          "error_description" : "Invalid access token: private_bearer_token"
+        }
+  recorded_at: Thu, 13 Jul 2023 19:17:11 GMT
+recorded_with: VCR 6.2.0
