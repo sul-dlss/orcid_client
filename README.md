@@ -1,5 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/sul_orcid_client.svg)](https://badge.fury.io/rb/sul_orcid_client)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/sul-dlss/orcid_client/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/sul-dlss/orcid_client/tree/main)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5f53521299eeec2f9346/maintainability)](https://codeclimate.com/github/sul-dlss/orcid_client/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5f53521299eeec2f9346/test_coverage)](https://codeclimate.com/github/sul-dlss/orcid_client/test_coverage)
 
 # sul_orcid_client
 API client for accessing ORCID API.
