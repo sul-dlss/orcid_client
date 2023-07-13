@@ -41,7 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rubocop-rspec"
   spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "standard", "~> 1.29.0" # Pinning until https://github.com/standardrb/standard-custom/pull/5
+  spec.add_development_dependency "standard"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 end
