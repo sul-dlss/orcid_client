@@ -1,5 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/sul_orcid_client.svg)](https://badge.fury.io/rb/sul_orcid_client)
-[![CircleCI](https://circleci.com/gh/sul-dlss/sul_orcid_client.svg?style=svg)](https://circleci.com/gh/sul-dlss/sul_orcid_client)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/sul-dlss/orcid_client/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/sul-dlss/orcid_client/tree/main)
 
 # sul_orcid_client
 API client for accessing ORCID API.
