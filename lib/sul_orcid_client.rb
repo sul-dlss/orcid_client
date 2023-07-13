@@ -33,7 +33,7 @@ class SulOrcidClient
       self
     end
 
-    delegate :fetch_works, :fetch_work, :fetch_name, :search, :add_work, :delete_work, to: :instance
+    delegate :fetch_works, :fetch_work, :fetch_name, :search, :add_work, :update_work, :delete_work, to: :instance
   end
 
   attr_accessor :base_url, :base_public_url, :base_auth_url, :client_id, :client_secret
@@ -122,6 +122,22 @@ class SulOrcidClient
     else
       raise "ORCID.org API returned #{response.status} (#{response.body}) for: #{work.to_json}"
     end
+  end
+
+  # Update an existing work for a researcher.
+  # @param [String] orcidid an ORCiD ID for the researcher
+  # @param [Hash] work a work in correct data structure for ORCID work
+  # @param [String] token an ORCiD API access token
+  # @param [String] put_code the PUT code
+  # @return [Boolean] true if update succeeded
+  # @raise [RuntimeError] if the API response status is not successful
+  def update_work(orcidid:, work:, token:, put_code:)
+    response = conn_with_token(token).put("/v3.0/#{base_orcidid(orcidid)}/work/#{put_code}",
+      work.merge({"put-code" => put_code}).to_json,
+      "Content-Type" => "application/vnd.orcid+json")
+
+    raise "ORCID.org API returned #{response.status} when updating #{put_code} for #{orcidid}" unless response.status == 200
+    true
   end
 
   # Delete a work
