@@ -8,6 +8,7 @@ end
 require "sul_orcid_client"
 require "byebug"
 require "webmock/rspec"
+require "cocina/models"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

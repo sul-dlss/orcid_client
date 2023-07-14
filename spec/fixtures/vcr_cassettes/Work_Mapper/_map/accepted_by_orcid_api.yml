@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.orcid.org/v3.0/0000-0003-3437-349X/work
+    body:
+      encoding: UTF-8
+      string: '{"title":{"title":{"value":"Strategies for Digital Library Migration"}},"short-description":"A
+        migration of the datastore and data model for Stanford Digital Repositorys
+        digital object metadata was recently completed.","citation":{"citation-type":"formatted-unspecified","citation-value":"Littman,
+        J. and Giarlo, M. (2023). Strategies for Digital Library Migration. Stanford
+        Digital Repository. Available at https://sul-purl-stage.stanford.edu/ny296bw4297.
+        https://doi.org/10.80343/ny296bw4297."},"type":"journal-article","publication-date":{"year":{"value":"2023"},"month":{"value":"02"},"day":{"value":"06"}},"external-ids":{"external-id":[{"external-id-type":"uri","external-id-value":"https://purl.stanford.edu/hj302gv2126","external-id-url":{"value":"https://purl.stanford.edu/hj302gv2126"},"external-id-relationship":"self"},{"external-id-type":"doi","external-id-value":"10.25740/hj302gv2126","external-id-url":{"value":"https://doi.org/10.25740/hj302gv2126"},"external-id-relationship":"self"}]},"url":"https://purl.stanford.edu/hj302gv2126","contributors":{"contributor":[{"credit-name":{"value":"Justin
+        Littman"}}]},"language-code":"en","country":{"value":"US"}}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - stanford-library-sul-pub
+      Authorization:
+      - Bearer private_bearer_token
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 14 Jul 2023 18:24:53 GMT
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Location:
+      - https://api.sandbox.orcid.org/v3.0/0000-0003-3437-349X/work/1755750
+      Cf-Ray:
+      - 7e6bce1d7a291367-IAD
+      Cf-Cache-Status:
+      - DYNAMIC
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Target:
+      - mapi-a1
+      X-Via:
+      - b1
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 14 Jul 2023 18:24:53 GMT
+recorded_with: VCR 6.2.0
