@@ -3,8 +3,10 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/5f53521299eeec2f9346/maintainability)](https://codeclimate.com/github/sul-dlss/orcid_client/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5f53521299eeec2f9346/test_coverage)](https://codeclimate.com/github/sul-dlss/orcid_client/test_coverage)
 
-# sul_orcid_client
+# orcid_client
 API client for accessing ORCID API.
+
+Note: the *gem* name is `sul_orcid_client`;  the git repo's name is `orcid_client`.
 
 ## Installation
 
