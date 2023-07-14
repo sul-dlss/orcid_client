@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activesupport", ">= 4.2", "< 8"
+  spec.add_dependency "cocina-models", "~> 0.90"
   spec.add_dependency "faraday"
   spec.add_dependency "faraday-retry"
   spec.add_dependency "oauth2"
