@@ -56,7 +56,7 @@ RSpec.describe SulOrcidClient::ContributorMapper do
             host: "orcid.org"
           },
           "contributor-attributes": {
-            "contributor-role": "Author"
+            "contributor-role": "author"
           }
         }
       )

@@ -12,7 +12,7 @@ class SulOrcidClient
     end
 
     def map
-      return unless cited?
+      return unless CocinaSupport.cited?(contributor)
 
       {
         "credit-name": map_credit_name,
@@ -24,10 +24,6 @@ class SulOrcidClient
     private
 
     attr_reader :contributor
-
-    def cited?
-      contributor.note.none? { |note| note.type == "citation status" && note.value == "false" }
-    end
 
     def map_credit_name
       value = if contributor.name.first&.structuredValue.present?
@@ -68,12 +64,12 @@ class SulOrcidClient
     end
 
     MARC_RELATOR_MAP = {
-      "aut" => "Author",
-      "cmp" => "Author",
-      "ctb" => "Author",
-      "cre" => "Author",
-      "edt" => "Editor",
-      "rth" => "Principal investigator"
+      "aut" => "author",
+      "cmp" => "author",
+      "ctb" => "author",
+      "cre" => "author",
+      "edt" => "editor",
+      "rth" => "principal-investigator"
     }
 
     def map_role
