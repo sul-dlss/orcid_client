@@ -208,6 +208,14 @@ RSpec.describe SulOrcidClient do
       end
     end
 
+    context "when server returns a 404 error" do
+      it "raises with 404-specific message" do
+        VCR.use_cassette("Sul_Orcid_Client/_update_work/raises_404") do
+          expect { client.update_work(orcidid: "https://sandbox.orcid.org/0000-0003-3437-349X", put_code: "12300000", work:, token: "FAKE29cb-194e-4bc3-8afg-99315b06be0468cf29cb-294e-4bc8-8afd-96315b06ae04") }.to raise_error(StandardError, "ORCID.org API returned 404 when updating 12300000 for https://sandbox.orcid.org/0000-0003-3437-349X. The author may have previously deleted this work from their ORCID profile.")
+        end
+      end
+    end
+
     context "when server returns an error" do
       it "raises" do
         VCR.use_cassette("Sul_Orcid_Client/_update_work/raises") do
