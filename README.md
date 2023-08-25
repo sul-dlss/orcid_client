@@ -29,8 +29,8 @@ require "sul_orcid_client"
 client = SulOrcidClient.configure(
   client_id: Settings.orcid.client_id,
   client_secret: Settings.orcid.client_secret,
-  base_url: Settings.orcid.base_url
-  base_public_url: Settings.orcid.base_public_url
+  base_url: Settings.orcid.base_url,
+  base_public_url: Settings.orcid.base_public_url,
   base_auth_url: Settings.orcid.base_auth_url
 )
 client.fetch_works(orcidid: 'https://sandbox.orcid.org/0000-0002-7262-6251')
@@ -46,8 +46,8 @@ to be sure configuration has already occurred, e.g.:
 SulOrcidClient.configure(
   client_id: Settings.orcid.client_id,
   client_secret: Settings.orcid.client_secret,
-  base_url: Settings.orcid.base_url
-  base_public_url: Settings.orcid.base_public_url
+  base_url: Settings.orcid.base_url,
+  base_public_url: Settings.orcid.base_public_url,
   base_auth_url: Settings.orcid.base_auth_url
 )
 
