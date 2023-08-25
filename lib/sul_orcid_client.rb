@@ -136,6 +136,8 @@ class SulOrcidClient
       work.merge({"put-code" => put_code}).to_json,
       "Content-Type" => "application/vnd.orcid+json")
 
+    raise "ORCID.org API returned #{response.status} when updating #{put_code} for #{orcidid}. The author may have previously deleted this work from their ORCID profile." if response.status == 404
+
     raise "ORCID.org API returned #{response.status} when updating #{put_code} for #{orcidid}" unless response.status == 200
     true
   end

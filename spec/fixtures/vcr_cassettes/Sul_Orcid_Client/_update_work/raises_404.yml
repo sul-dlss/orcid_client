@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.sandbox.orcid.org/v3.0/0000-0003-3437-349X/work/12300000
+    body:
+      encoding: UTF-8
+      string: '{"title":{"title":{"value":"Twitter Makes It Worse: Political Journalists,
+        Gendered Echo Chambers, and the Amplification of Gender Bias"},"subtitle":null,"translated-title":null},"journal-title":{"value":"The
+        International Journal of Press/Politics"},"short-description":null,"citation":{"citation-type":"bibtex","citation-value":"@article{Usher_2018,\n\tdoi
+        = {10.1177/1940161218781254},\n\turl = {https://doi.org/10.1177%2F1940161218781254},\n\tyear
+        = 2018,\n\tmonth = {jun},\n\tpublisher = {{SAGE} Publications},\n\tvolume
+        = {23},\n\tnumber = {3},\n\tpages = {324--344},\n\tauthor = {Nikki Usher and
+        Jesse Holcomb and Justin Littman},\n\ttitle = {Twitter Makes It Worse: Political
+        Journalists, Gendered Echo Chambers, and the Amplification of Gender Bias},\n\tjournal
+        = {The International Journal of Press/Politics}\n}"},"type":"journal-article","publication-date":{"year":{"value":"2018"},"month":{"value":"07"},"day":{"value":"24"}},"external-ids":{"external-id":[{"external-id-type":"doi","external-id-value":"10.1177/1940161218781254","external-id-normalized":{"value":"10.1177/1940161218781254","transient":true},"external-id-normalized-error":null,"external-id-url":{"value":"https://doi.org/10.1177/1940161218781254"},"external-id-relationship":"self"}]},"url":{"value":"https://doi.org/10.1177/1940161218781254"},"contributors":{"contributor":[{"contributor-orcid":null,"credit-name":{"value":"Nikki
+        Usher"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}},{"contributor-orcid":null,"credit-name":{"value":"Jesse
+        Holcomb"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}},{"contributor-orcid":null,"credit-name":{"value":"Justin
+        Littman"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}}]},"language-code":null,"country":null,"put-code":"12300000"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - stanford-library-sul-pub
+      Authorization:
+      - Bearer private_bearer_token
+      Content-Type:
+      - application/vnd.orcid+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 25 Aug 2023 19:01:47 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 7fc615edab172090-IAD
+      Cf-Cache-Status:
+      - DYNAMIC
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Target:
+      - reg-sbox-mapi-use2-a1
+      X-Via:
+      - a1
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+    body:
+      encoding: ASCII-8BIT
+      string: '{"response-code":404,"developer-message":"404 Not Found: The resource
+        was not found. Full validation error: No entity found for query","user-message":"The
+        resource was not found.","error-code":9016,"more-info":"https://members.orcid.org/api/resources/troubleshooting"}'
+  recorded_at: Fri, 25 Aug 2023 19:01:47 GMT
+recorded_with: VCR 6.2.0
