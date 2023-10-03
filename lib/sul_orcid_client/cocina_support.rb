@@ -1,5 +1,9 @@
 class SulOrcidClient
   # Helper methods for working with Orcid in Cocina
+  # NOTE: there is similar code in dor_indexing_app which fetches
+  # ORCIDs out of cocina.  Consider consolidating at some point or keeping in sync.
+  # see https://github.com/sul-dlss/dor_indexing_app/blob/main/app/services/orcid_builder.rb
+  # and https://github.com/sul-dlss/dor_indexing_app/issues/1022
   class CocinaSupport
     # @param [Cocina::Models::Contributor] contributor to check
     # @return [Boolean] true unless the contributor has a citation status of false
