@@ -75,7 +75,7 @@ RSpec.describe SulOrcidClient::CocinaSupport do
               value: "0000-0003-3437-349X",
               type: "ORCID",
               source: {
-                uri: "https://sandbox.orcid.org"
+                uri: "https://orcid.org"
               }
             }
           ]
@@ -83,7 +83,7 @@ RSpec.describe SulOrcidClient::CocinaSupport do
       end
 
       it "returns the orcidid" do
-        expect(described_class.orcidid(contributor)).to eq("https://sandbox.orcid.org/0000-0003-3437-349X")
+        expect(described_class.orcidid(contributor)).to eq("https://orcid.org/0000-0003-3437-349X")
       end
     end
 
@@ -197,7 +197,7 @@ RSpec.describe SulOrcidClient::CocinaSupport do
     end
 
     it "returns the cited orcidids" do
-      expect(described_class.cited_orcidids(description)).to eq(["https://sandbox.orcid.org/0000-0003-3437-349X"])
+      expect(described_class.cited_orcidids(description)).to eq(["https://orcid.org/0000-0003-3437-349X"])
     end
   end
 end
