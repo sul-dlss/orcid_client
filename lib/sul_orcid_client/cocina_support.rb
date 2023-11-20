@@ -21,7 +21,10 @@ class SulOrcidClient
       return identifier.uri if identifier.uri
       return identifier.value if identifier.value.start_with?("https://orcid.org/")
 
-      URI.join("https://orcid.org/", identifier.value).to_s
+      # some records have just the ORCIDID without the URL prefix, add it if so, e.g. druid:tp865ng1792
+      return URI.join("https://orcid.org/", identifier.value).to_s if identifier.source.uri.blank?
+
+      URI.join(identifier.source.uri, identifier.value).to_s
     end
 
     # @param [Cocina::Models::Description] description containing contributors to check
