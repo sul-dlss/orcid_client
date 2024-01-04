@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-require "simplecov"
+require 'simplecov'
 SimpleCov.start do
-  add_filter "spec"
+  add_filter 'spec'
 end
 
-require "sul_orcid_client"
-require "byebug"
-require "webmock/rspec"
-require "cocina/models"
+require 'sul_orcid_client'
+require 'byebug'
+require 'webmock/rspec'
+require 'cocina/models'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
+  config.example_status_persistence_file_path = '.rspec_status'
 
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
@@ -25,12 +25,12 @@ end
 WebMock.enable!
 
 # the fake client ID and secret used in spec tests for Orcid API (and used to sanitize)
-FAKE_CLIENT_ID = "abc123"
-FAKE_CLIENT_SECRET = "def456"
+FAKE_CLIENT_ID = 'abc123'
+FAKE_CLIENT_SECRET = 'def456'
 
-require "vcr"
+require 'vcr'
 VCR.configure do |c|
-  c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.allow_http_connections_when_no_cassette = true
   c.hook_into :webmock
   c.default_cassette_options = {
@@ -48,16 +48,16 @@ VCR.configure do |c|
     token_match&.captures&.first
   end
   # API authorization access token received from authorization request
-  c.filter_sensitive_data("private_access_token") do |interaction|
+  c.filter_sensitive_data('private_access_token') do |interaction|
     token_match = interaction.response.body.match(/"access_token":"(.*?)"/)
     token_match&.captures&.first
   end
   # MaIS API authorization access token sent in later requests
-  c.filter_sensitive_data("private_bearer_token") do |interaction|
-    auth = interaction.request.headers["Authorization"]
+  c.filter_sensitive_data('private_bearer_token') do |interaction|
+    auth = interaction.request.headers['Authorization']
     if auth.is_a? Array
       bearer = auth.grep(/bearer/i).first
-      bearer&.gsub(/bearer /i, "")
+      bearer&.gsub(/bearer /i, '')
     end
   end
 end

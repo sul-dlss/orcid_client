@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
-require "active_support"
-require "active_support/core_ext"
+require 'active_support'
+require 'active_support/core_ext'
 
-require "faraday"
-require "faraday/retry"
-require "oauth2"
-require "singleton"
-require "zeitwerk"
+require 'faraday'
+require 'faraday/retry'
+require 'oauth2'
+require 'singleton'
+require 'zeitwerk'
 
 # Load the gem's internal dependencies: use Zeitwerk instead of needing to manually require classes
 Zeitwerk::Loader.for_gem.setup
 
 # Client for interacting with ORCID API
+# rubocop:disable Metrics/ClassLength
 class SulOrcidClient
   include Singleton
 
@@ -52,16 +53,17 @@ class SulOrcidClient
   end
 
   # Fetches the name for a user given an orcidid
+  # rubocop:disable Metrics/MethodLength
   def fetch_name(orcidid:)
     match = /[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}/.match(orcidid)
-    raise "invalid orcidid provided" unless match
+    raise 'invalid orcidid provided' unless match
 
     response = public_conn.get("/v3.0/#{match[0]&.upcase}/personal-details")
     case response.status
     when 200
       resp_json = JSON.parse(response.body)
-      [resp_json.dig("name", "given-names", "value"),
-        resp_json.dig("name", "family-name", "value")]
+      [resp_json.dig('name', 'given-names', 'value'),
+       resp_json.dig('name', 'family-name', 'value')]
     else
       raise "ORCID.org API returned #{response.status} (#{response.body}) for: #{orcidid}"
     end
@@ -71,19 +73,20 @@ class SulOrcidClient
   # see https://info.orcid.org/documentation/api-tutorials/api-tutorial-searching-the-orcid-registry
   # @param [query] query to pass to ORCID
   # @param [expanded] set to true or false (defaults to false) to indicate an expanded query results (see ORCID docs)
+  # rubocop:disable Metrics/AbcSize
   def search(query:, expanded: false)
     if expanded
-      search_method = "expanded-search"
-      response_name = "expanded-result"
+      search_method = 'expanded-search'
+      response_name = 'expanded-result'
     else
-      search_method = "search"
-      response_name = "result"
+      search_method = 'search'
+      response_name = 'result'
     end
 
     # this is the maximum number of rows ORCID allows in their response currently
     max_num_returned = 1000
     total_response = get("/v3.0/#{search_method}/?q=#{query}&rows=#{max_num_returned}")
-    num_results = total_response["num-found"]
+    num_results = total_response['num-found']
 
     return total_response if num_results <= max_num_returned
 
@@ -105,24 +108,26 @@ class SulOrcidClient
   # @return [string] put-code
   def add_work(orcidid:, work:, token:)
     response = conn_with_token(token).post("/v3.0/#{base_orcidid(orcidid)}/work",
-      work.to_json,
-      "Content-Type" => "application/json")
+                                           work.to_json,
+                                           'Content-Type' => 'application/json')
 
     case response.status
     when 201
-      response["Location"].match(%r{work/(\d+)})[1]
+      response['Location'].match(%r{work/(\d+)})[1]
     when 401
       raise InvalidTokenError,
-        "Invalid token for #{orcidid} - ORCID.org API returned #{response.status} (#{response.body})"
+            "Invalid token for #{orcidid} - ORCID.org API returned #{response.status} (#{response.body})"
     when 409
       match = response.body.match(/put-code (\d+)\./)
-      raise "ORCID.org API returned a 409, but could not find put-code" unless match
+      raise 'ORCID.org API returned a 409, but could not find put-code' unless match
 
       match[1]
     else
       raise "ORCID.org API returned #{response.status} (#{response.body}) for: #{work.to_json}"
     end
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 
   # Update an existing work for a researcher.
   # @param [String] orcidid an ORCiD ID for the researcher
@@ -133,12 +138,16 @@ class SulOrcidClient
   # @raise [RuntimeError] if the API response status is not successful
   def update_work(orcidid:, work:, token:, put_code:)
     response = conn_with_token(token).put("/v3.0/#{base_orcidid(orcidid)}/work/#{put_code}",
-      work.merge({"put-code" => put_code}).to_json,
-      "Content-Type" => "application/vnd.orcid+json")
+                                          work.merge({ 'put-code' => put_code }).to_json,
+                                          'Content-Type' => 'application/vnd.orcid+json')
 
-    raise "ORCID.org API returned #{response.status} when updating #{put_code} for #{orcidid}. The author may have previously deleted this work from their ORCID profile." if response.status == 404
+    if response.status == 404
+      raise "ORCID.org API returned #{response.status} when updating #{put_code} for #{orcidid}. The author may have previously deleted " \
+            'this work from their ORCID profile.'
+    end
 
     raise "ORCID.org API returned #{response.status} when updating #{put_code} for #{orcidid}" unless response.status == 200
+
     true
   end
 
@@ -171,7 +180,7 @@ class SulOrcidClient
 
   def client_token
     client = OAuth2::Client.new(client_id, client_secret, site: base_auth_url)
-    token = client.client_credentials.get_token({scope: "/read-public"})
+    token = client.client_credentials.get_token({ scope: '/read-public' })
     token.token
   end
 
@@ -184,9 +193,9 @@ class SulOrcidClient
   def public_conn
     conn = Faraday.new(url: base_public_url) do |faraday|
       faraday.request :retry, max: 5,
-        interval: 0.5,
-        interval_randomness: 0.5,
-        backoff_factor: 2
+                              interval: 0.5,
+                              interval_randomness: 0.5,
+                              backoff_factor: 2
     end
     conn.options.timeout = 500
     conn.options.open_timeout = 10
@@ -195,12 +204,13 @@ class SulOrcidClient
   end
 
   # @return [Faraday::Connection]
+  # rubocop:disable Metrics/MethodLength
   def conn_with_token(token)
     conn = Faraday.new(url: base_url) do |faraday|
       faraday.request :retry, max: 3,
-        interval: 0.5,
-        interval_randomness: 0.5,
-        backoff_factor: 2
+                              interval: 0.5,
+                              interval_randomness: 0.5,
+                              backoff_factor: 2
     end
     conn.options.timeout = 500
     conn.options.open_timeout = 10
@@ -208,11 +218,12 @@ class SulOrcidClient
     conn.headers[:authorization] = "Bearer #{token}"
     conn
   end
+  # rubocop:enable Metrics/MethodLength
 
   def headers
     {
-      "Accept" => "application/json",
-      "User-Agent" => "stanford-library-sul-pub"
+      'Accept' => 'application/json',
+      'User-Agent' => 'stanford-library-sul-pub'
     }
   end
 
@@ -224,3 +235,4 @@ class SulOrcidClient
     orcidid[-19, 19]
   end
 end
+# rubocop:enable Metrics/ClassLength
