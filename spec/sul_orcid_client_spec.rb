@@ -119,6 +119,22 @@ RSpec.describe SulOrcidClient do
     end
   end
 
+  describe '#fetch_record' do
+    let(:fetch_record_response) { client.fetch_record(orcidid: 'https://sandbox.orcid.org/0000-0002-2230-4756') }
+    let(:bogus_fetch_record_response) { client.fetch_record(orcidid: 'bogus') }
+
+    it 'retrieves a record given an orcid' do
+      VCR.use_cassette('Sul_Orcid_Client/_fetch_name/retrieve record') do
+        expect(fetch_record_response.class).to eq Hash
+        expect(fetch_record_response['person']['name']['given-names']['value']).to eq 'Peter'
+      end
+    end
+
+    it 'raises an exception for an invalid orcidid' do
+      expect { bogus_fetch_record_response }.to raise_error('invalid orcidid provided')
+    end
+  end
+
   describe '#search' do
     context 'when a regular search' do
       let(:search_response) { client.search(query: '(ringgold-org-id:6429)') }
