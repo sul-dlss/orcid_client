@@ -104,7 +104,7 @@ GEM
       base64
     language_server-protocol (3.17.0.3)
     logger (1.6.1)
-    minitest (5.25.1)
+    minitest (5.25.2)
     multi_json (1.15.0)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
