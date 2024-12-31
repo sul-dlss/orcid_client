@@ -8,6 +8,8 @@ API client for accessing ORCID API and for mapping to ORCID works.
 
 Note: the *gem* name is `sul_orcid_client`;  the git repo's name is `orcid_client`.
 
+See https://postman.orcid.org/ and https://pub.orcid.org/v3.0/
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
