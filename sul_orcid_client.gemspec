@@ -12,12 +12,12 @@ Gem::Specification.new do |spec|
 
   spec.summary = 'Interface for interacting with the ORCID API.'
   spec.description = 'This provides API interaction with the ORCID API'
-  spec.homepage = 'https://github.com/sul-dlss/sul_orcid_client'
+  spec.homepage = 'https://github.com/sul-dlss/orcid_client'
   spec.required_ruby_version = '>= 3.2.0'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/sul-dlss/sul_orcid_client'
-  spec.metadata['changelog_uri'] = 'https://github.com/sul-dlss/sul_orcid_client/releases'
+  spec.metadata['source_code_uri'] = 'https://github.com/sul-dlss/orcid_client'
+  spec.metadata['changelog_uri'] = 'https://github.com/sul-dlss/orcid_client/releases'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   # Specify which files should be added to the gem when it is released.
