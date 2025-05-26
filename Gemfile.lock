@@ -56,7 +56,7 @@ GEM
       activesupport
     diff-lcs (1.6.2)
     docile (1.4.1)
-    drb (2.2.1)
+    drb (2.2.3)
     dry-core (1.1.0)
       concurrent-ruby (~> 1.0)
       logger
@@ -91,12 +91,12 @@ GEM
       net-http (>= 0.5.0)
     faraday-retry (2.3.1)
       faraday (~> 2.0)
-    hashdiff (1.1.2)
+    hashdiff (1.2.0)
     hashie (5.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    json (2.12.0)
+    json (2.12.2)
     jsonpath (1.1.5)
       multi_json
     jwt (2.10.1)
@@ -116,13 +116,13 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.8-x86_64-linux-gnu)
       racc (~> 1.4)
-    oauth2 (2.0.10)
+    oauth2 (2.0.11)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
       logger (~> 1.2)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 4)
-      snaky_hash (~> 2.0)
+      snaky_hash (~> 2.0, >= 2.0.3)
       version_gem (>= 1.1.8, < 3)
     openapi_parser (1.0.0)
     optimist (3.2.1)
@@ -153,7 +153,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.3)
-    rubocop (1.75.6)
+    rubocop (1.75.7)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -192,9 +192,9 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
-    snaky_hash (2.0.1)
-      hashie
-      version_gem (~> 1.1, >= 1.1.1)
+    snaky_hash (2.0.3)
+      hashie (>= 0.1.0, < 6)
+      version_gem (>= 1.1.8, < 3)
     super_diff (0.15.0)
       attr_extras (>= 6.2.4)
       diff-lcs
@@ -213,7 +213,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    zeitwerk (2.7.2)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   arm64-darwin-23
