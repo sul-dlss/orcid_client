@@ -13,8 +13,6 @@ class SulOrcidClient
     end
 
     def map
-      return unless CocinaSupport.cited?(contributor)
-
       {
         'credit-name': map_credit_name,
         'contributor-orcid': map_orcid,

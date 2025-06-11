@@ -96,38 +96,6 @@ RSpec.describe SulOrcidClient::ContributorMapper do
     end
   end
 
-  context 'when contributor is not cited' do
-    let(:contributor) do
-      Cocina::Models::Contributor.new(
-        name: [
-          {
-            structuredValue: [
-              {
-                value: 'Justin',
-                type: 'forename'
-              },
-              {
-                value: 'Littman',
-                type: 'surname'
-              }
-            ]
-          }
-        ],
-        type: 'person',
-        note: [
-          {
-            value: 'false',
-            type: 'citation status'
-          }
-        ]
-      )
-    end
-
-    it 'returns nil' do
-      expect(orcid_contributor).to be_nil
-    end
-  end
-
   context 'when an organization' do
     let(:contributor) do
       Cocina::Models::Contributor.new(
