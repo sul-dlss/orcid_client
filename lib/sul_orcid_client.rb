@@ -93,7 +93,7 @@ class SulOrcidClient
     num_pages = (num_results / max_num_returned.to_f).ceil
 
     # we already have page 1 of the results
-    (1..num_pages - 1).each do |page_num|
+    (1..num_pages - 1).each do |page_num| # rubocop:disable Lint/AmbiguousRange
       response = get("/v3.0/#{search_method}/?q=#{query}&start=#{(page_num * max_num_returned) + 1}&rows=#{max_num_returned}")
       total_response[response_name] += response[response_name]
     end
