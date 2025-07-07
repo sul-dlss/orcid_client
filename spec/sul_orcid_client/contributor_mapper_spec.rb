@@ -143,4 +143,61 @@ RSpec.describe SulOrcidClient::ContributorMapper do
       )
     end
   end
+
+  context 'when Stanford as degree-granting with a suborganization' do
+    let(:contributor) do
+      Cocina::Models::Contributor.new(
+        {
+          name: [
+            {
+              structuredValue: [
+                {
+                  value: 'Stanford University',
+                  identifier: [
+                    {
+                      uri: 'https://ror.org/00f54p054',
+                      type: 'ROR',
+                      source: {
+                        code: 'ror'
+                      }
+                    }
+                  ]
+                },
+                {
+                  value: 'Woods Institute for the Environment'
+                }
+              ]
+            }
+          ],
+          type: 'organization',
+          role: [
+            {
+              value: 'degree granting institution',
+              code: 'dgg',
+              uri: 'http://id.loc.gov/vocabulary/relators/dgg',
+              source: {
+                code: 'marcrelator',
+                uri: 'http://id.loc.gov/vocabulary/relators/'
+              }
+            }
+          ]
+        }
+      )
+    end
+
+    it 'maps' do
+      expect(orcid_contributor).to eq(
+        {
+          'credit-name': {
+            value: 'Stanford University'
+          },
+          'contributor-orcid': {
+            uri: 'https://ror.org/00f54p054',
+            path: '00f54p054',
+            host: 'ror.org'
+          }
+        }
+      )
+    end
+  end
 end

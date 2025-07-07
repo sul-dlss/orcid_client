@@ -38,24 +38,68 @@ class SulOrcidClient
       }
     end
 
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def name_from_structured_value(structured_value)
       forename = structured_value.find { |name_part| name_part.type == 'forename' }&.value
       surname = structured_value.find { |name_part| name_part.type == 'surname' }&.value
-      [forename, surname].join(' ')
+
+      if forename.present? || surname.present?
+        [forename, surname].compact.join(' ')
+      else
+        # take first value for the Stanford University organization. Do not map the department/institute suborganization for now.
+        structured_value.first&.value
+      end
     end
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     IDENTIFIER_TYPES = %w[ORCID ROR].freeze
 
     def map_orcid
-      identifier = contributor.identifier.find { |check_identifier| IDENTIFIER_TYPES.include?(check_identifier.type) }
+      if contributor.name.first&.structuredValue.present?
+        # there could be an identifier in the structuredValue if it has a suborganization
+        if contributor.name.first.structuredValue.first&.identifier.present?
+          orcid_from_structured_value
+        else
+          orcid_from_contributor
+        end
+      else
+        orcid_from_contributor
+      end
+    end
 
-      return unless identifier
+    def identifier_from_structured_value(structured_value)
+      structured_value.identifier.find { |identifier| IDENTIFIER_TYPES.include?(identifier.type) }
+    end
 
+    # the identifier in the structuredValue has the uri in a different properties than a top-level contributor.identifier
+    def map_orcid_from_structured_value(identifier)
+      {
+        uri: identifier.uri || identifier.value,
+        path: URI(identifier.uri).path.split('/').last,
+        host: identifier.type == 'ORCID' ? 'orcid.org' : 'ror.org'
+      }
+    end
+
+    def map_orcid_from_contributor(identifier)
       {
         uri: URI.join(identifier.source.uri, identifier.value).to_s,
         path: identifier.value,
         host: identifier.type == 'ORCID' ? 'orcid.org' : 'ror.org'
       }
+    end
+
+    # find and map an orcid from a contributor.identifier
+    def orcid_from_contributor
+      identifier = contributor.identifier.find { |check_identifier| IDENTIFIER_TYPES.include?(check_identifier.type) }
+      return unless identifier
+
+      map_orcid_from_contributor(identifier)
+    end
+
+    # find and map an orcid from a contributor.structuredValue.identifier
+    def orcid_from_structured_value
+      identifier = identifier_from_structured_value(contributor.name.first.structuredValue.first)
+      map_orcid_from_structured_value(identifier)
     end
 
     def map_attributes
