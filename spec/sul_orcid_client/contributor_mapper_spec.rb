@@ -133,11 +133,6 @@ RSpec.describe SulOrcidClient::ContributorMapper do
         {
           'credit-name': {
             value: 'Stanford University'
-          },
-          'contributor-orcid': {
-            uri: 'https://ror.org/00f54p054',
-            path: '00f54p054',
-            host: 'ror.org'
           }
         }
       )
@@ -190,11 +185,6 @@ RSpec.describe SulOrcidClient::ContributorMapper do
         {
           'credit-name': {
             value: 'Stanford University'
-          },
-          'contributor-orcid': {
-            uri: 'https://ror.org/00f54p054',
-            path: '00f54p054',
-            host: 'ror.org'
           }
         }
       )
