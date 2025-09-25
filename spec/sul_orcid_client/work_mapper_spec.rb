@@ -211,7 +211,7 @@ RSpec.describe SulOrcidClient::WorkMapper do
       end
     end
 
-    context 'when no title' do
+    context 'with a structured title' do
       let(:description) do
         Cocina::Models::Description.new(
           title: [
@@ -232,10 +232,30 @@ RSpec.describe SulOrcidClient::WorkMapper do
         )
       end
 
-      it 'raises' do
-        expect do
-          described_class.map(description:)
-        end.to raise_error(SulOrcidClient::WorkMapper::WorkMapperError)
+      let(:work) do
+        described_class.map(description:)
+      end
+
+      it 'maps' do
+        expect(work).to eq(
+          country: { value: 'US' },
+          'external-ids': {
+            'external-id': [
+              {
+                'external-id-relationship': 'self',
+                'external-id-type': 'uri',
+                'external-id-url': {
+                  value: 'https://purl.stanford.edu/hj302gv2126'
+                },
+                'external-id-value': 'https://purl.stanford.edu/hj302gv2126'
+              }
+            ]
+          },
+          'language-code': 'en',
+          title: { title: { value: 'code4lib journal' } },
+          type: 'other',
+          url: 'https://purl.stanford.edu/hj302gv2126'
+        )
       end
     end
   end
