@@ -44,7 +44,7 @@ class SulOrcidClient
     attr_reader :description, :doi
 
     def map_title
-      title = description.title.first&.value
+      title = simple_title.presence || structured_title
       raise WorkMapperError, 'Title not mapped' unless title
 
       {
@@ -52,6 +52,20 @@ class SulOrcidClient
           value: title.truncate(500) # ORCID has a max length for this field
         }
       }
+    end
+
+    def simple_title
+      first_title&.value
+    end
+
+    def structured_title
+      return if first_title.structuredValue.blank?
+
+      first_title.structuredValue.find { |sv| sv.type == 'main title' }&.value
+    end
+
+    def first_title
+      description.title.first
     end
 
     def map_short_description
