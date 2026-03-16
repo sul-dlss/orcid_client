@@ -33,7 +33,7 @@ GEM
     bigdecimal (4.0.1)
     byebug (13.0.0)
       reline (>= 0.6.0)
-    cocina-models (0.113.0)
+    cocina-models (0.114.0)
       activesupport
       deprecation
       dry-struct (~> 1.0)
@@ -181,7 +181,7 @@ GEM
       rubocop-ast (>= 1.49.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.49.0)
+    rubocop-ast (1.49.1)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
     rubocop-capybara (2.22.1)
@@ -255,4 +255,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-  4.0.7
+  4.0.8
