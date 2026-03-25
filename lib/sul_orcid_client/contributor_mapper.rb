@@ -20,6 +20,16 @@ class SulOrcidClient
       }.compact
     end
 
+    MARC_RELATOR_MAP = {
+      'aut' => 'author',
+      'cmp' => 'author',
+      'ctb' => 'author',
+      'cre' => 'author',
+      'edt' => 'editor',
+      'rth' => 'principal-investigator'
+    }.freeze
+    private_constant :MARC_RELATOR_MAP
+
     private
 
     attr_reader :contributor
@@ -66,15 +76,6 @@ class SulOrcidClient
         'contributor-role': map_role
       }.compact.presence
     end
-
-    MARC_RELATOR_MAP = {
-      'aut' => 'author',
-      'cmp' => 'author',
-      'ctb' => 'author',
-      'cre' => 'author',
-      'edt' => 'editor',
-      'rth' => 'principal-investigator'
-    }.freeze
 
     def map_role
       role = contributor.role.find do |check_role|
