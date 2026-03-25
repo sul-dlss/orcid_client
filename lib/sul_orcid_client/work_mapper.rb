@@ -11,6 +11,38 @@ class SulOrcidClient
     # Error raised by WorkMapper
     class WorkMapperError < StandardError; end
 
+    H2_TERM_MAP = {
+      'Data' => 'data-set',
+      'Software/Code' => 'software',
+      'Article' => 'journal-article',
+      'Book' => 'book',
+      'Book chapter' => 'book-chapter',
+      'Code' => 'software',
+      'Conference session' => 'lecture-speech',
+      'Course/instructional materials' => 'manual',
+      'Database' => 'data-set',
+      'Dramatic performance' => 'artistic-performance',
+      'Geospatial data' => 'data-set',
+      'Journal/periodical issue' => 'journal-issue',
+      'Performance' => 'artistic-performance',
+      'Poetry reading' => 'artistic-performance',
+      'Poster' => 'conference-poster',
+      'Preprint' => 'preprint',
+      'Presentation recording' => 'lecture-speech',
+      'Questionnaire' => 'research-technique',
+      'Report' => 'report',
+      'Software' => 'software',
+      'Speech' => 'lecture-speech',
+      'Statistical model' => 'research-technique',
+      'Syllabus' => 'manual',
+      'Tabular data' => 'data-set',
+      'Technical report' => 'report',
+      'Text corpus' => 'data-set',
+      'Thesis' => 'dissertation-thesis',
+      'Working paper' => 'working-paper'
+    }.freeze
+    private_constant :H2_TERM_MAP
+
     def self.map(description:, doi: nil)
       new(description:, doi:).map
     end
@@ -127,39 +159,10 @@ class SulOrcidClient
     end
 
     def event_value(type)
-      description&.event&.find { |event| event.type == type }&.date&.first&.value
+      event = description&.event&.find { |description_event| description_event.type == type }
+      event_date = event&.date&.first
+      event_date&.value
     end
-
-    H2_TERM_MAP = {
-      'Data' => 'data-set',
-      'Software/Code' => 'software',
-      'Article' => 'journal-article',
-      'Book' => 'book',
-      'Book chapter' => 'book-chapter',
-      'Code' => 'software',
-      'Conference session' => 'lecture-speech',
-      'Course/instructional materials' => 'manual',
-      'Database' => 'data-set',
-      'Dramatic performance' => 'artistic-performance',
-      'Geospatial data' => 'data-set',
-      'Journal/periodical issue' => 'journal-issue',
-      'Performance' => 'artistic-performance',
-      'Poetry reading' => 'artistic-performance',
-      'Poster' => 'conference-poster',
-      'Preprint' => 'preprint',
-      'Presentation recording' => 'lecture-speech',
-      'Questionnaire' => 'research-technique',
-      'Report' => 'report',
-      'Software' => 'software',
-      'Speech' => 'lecture-speech',
-      'Statistical model' => 'research-technique',
-      'Syllabus' => 'manual',
-      'Tabular data' => 'data-set',
-      'Technical report' => 'report',
-      'Text corpus' => 'data-set',
-      'Thesis' => 'dissertation-thesis',
-      'Working paper' => 'working-paper'
-    }.freeze
 
     def map_type
       # See https://info.orcid.org/ufaqs/what-work-types-does-orcid-support/

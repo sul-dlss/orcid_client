@@ -19,59 +19,7 @@ RSpec.describe SulOrcidClient::CocinaSupport do
       end
     end
 
-    context 'when orcidid' do
-      let(:contributor) do
-        Cocina::Models::Contributor.new(
-          name: [
-            {
-              value: 'Justin Littman'
-            }
-          ],
-          type: 'person',
-          identifier: [
-            {
-              value: '0000-0003-3437-349X',
-              type: 'ORCID',
-              source: {
-                uri: 'https://sandbox.orcid.org'
-              }
-            }
-          ]
-        )
-      end
-
-      it 'returns the orcidid' do
-        expect(described_class.orcidid(contributor)).to eq('https://sandbox.orcid.org/0000-0003-3437-349X')
-      end
-    end
-
-    context 'when alternate orcidid format' do
-      let(:contributor) do
-        Cocina::Models::Contributor.new(
-          name: [
-            {
-              value: 'Justin Littman'
-            }
-          ],
-          type: 'person',
-          identifier: [
-            {
-              value: '0000-0003-3437-349X',
-              type: 'ORCID',
-              source: {
-                code: 'orcid'
-              }
-            }
-          ]
-        )
-      end
-
-      it 'returns the orcidid' do
-        expect(described_class.orcidid(contributor)).to eq('https://orcid.org/0000-0003-3437-349X')
-      end
-    end
-
-    context 'when another alternate orcidid format' do
+    context 'when orcidid present' do
       let(:contributor) do
         Cocina::Models::Contributor.new(
           name: [
@@ -83,10 +31,7 @@ RSpec.describe SulOrcidClient::CocinaSupport do
           identifier: [
             {
               uri: 'https://sandbox.orcid.org/0000-0003-3437-349X',
-              type: 'ORCID',
-              source: {
-                code: 'orcid'
-              }
+              type: 'ORCID'
             }
           ]
         )

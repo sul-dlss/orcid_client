@@ -34,11 +34,8 @@ RSpec.describe SulOrcidClient::ContributorMapper do
         ],
         identifier: [
           {
-            value: '0000-0003-3437-349X',
-            type: 'ORCID',
-            source: {
-              uri: 'https://sandbox.orcid.org'
-            }
+            uri: 'https://sandbox.orcid.org/0000-0003-3437-349X',
+            type: 'ORCID'
           }
         ]
       )
