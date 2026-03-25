@@ -51,12 +51,12 @@ class SulOrcidClient
 
     # find and map an ORCID from a contributor.identifier
     def map_orcid
-      identifier = contributor.identifier.find { |check_identifier| check_identifier.type == 'ORCID' }
-      return unless identifier
+      uri = CocinaSupport.orcidid(contributor)
+      return unless uri
 
       {
-        uri: URI.join(identifier.source.uri, identifier.value).to_s,
-        path: identifier.value,
+        uri:,
+        path: uri.split('/').last,
         host: 'orcid.org'
       }
     end
