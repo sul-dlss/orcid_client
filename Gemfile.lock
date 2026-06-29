@@ -27,8 +27,8 @@ GEM
       uri (>= 0.13.1)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
-    anonymous_loader (0.1.1)
-      version_gem (~> 1.1, >= 1.1.12)
+    anonymous_loader (0.1.2)
+      version_gem (~> 1.1, >= 1.1.13)
     ast (2.4.3)
     attr_extras (7.1.0)
     auth-sanitizer (0.2.2)
@@ -51,7 +51,7 @@ GEM
       super_diff
       thor
       zeitwerk (~> 2.1)
-    cocina_display (2.7.0)
+    cocina_display (2.8.0)
       activesupport (>= 7)
       edtf (~> 3.2)
       geo_coord (~> 0.2)
@@ -91,7 +91,7 @@ GEM
       dry-inflector (~> 1.0)
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
-    edtf (3.2.0)
+    edtf (3.3.0)
       activesupport (>= 3.0, < 9.0)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
@@ -113,12 +113,12 @@ GEM
     io-console (0.8.2)
     iso8601 (0.13.0)
     janeway-jsonpath (1.0.0)
-    json (2.19.9)
-    jsonschema_rs (0.46.5-arm64-darwin)
+    json (2.20.0)
+    jsonschema_rs (0.46.6-arm64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.46.5-x86_64-darwin)
+    jsonschema_rs (0.46.6-x86_64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.46.5-x86_64-linux)
+    jsonschema_rs (0.46.6-x86_64-linux)
       bigdecimal (>= 3.1, < 5)
     jwt (3.2.0)
       base64
@@ -192,7 +192,7 @@ GEM
     rubocop-ast (1.49.1)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
-    rubocop-capybara (2.23.0)
+    rubocop-capybara (3.0.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.81)
     rubocop-factory_bot (2.28.0)
@@ -233,7 +233,7 @@ GEM
     unicode-emoji (4.2.0)
     uri (1.1.1)
     vcr (6.4.0)
-    version_gem (1.1.12)
+    version_gem (1.1.13)
     webmock (3.26.2)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -263,4 +263,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-  4.0.14
+  4.0.15
