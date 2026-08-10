@@ -37,7 +37,7 @@ GEM
     bigdecimal (4.1.2)
     byebug (13.0.0)
       reline (>= 0.6.0)
-    cocina-models (0.132.0)
+    cocina-models (0.133.0)
       activesupport
       cocina_display
       deprecation
@@ -109,15 +109,15 @@ GEM
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    io-console (0.8.2)
+    io-console (0.9.2)
     iso8601 (0.13.0)
     janeway-jsonpath (1.1.0)
     json (2.21.2)
-    jsonschema_rs (0.49.3-arm64-darwin)
+    jsonschema_rs (0.49.9-arm64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.49.3-x86_64-darwin)
+    jsonschema_rs (0.49.9-x86_64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.49.3-x86_64-linux)
+    jsonschema_rs (0.49.9-x86_64-linux)
       bigdecimal (>= 3.1, < 5)
     jwt (3.2.0)
       base64
@@ -161,7 +161,7 @@ GEM
     rainbow (3.1.1)
     rake (13.4.2)
     regexp_parser (2.12.0)
-    reline (0.6.3)
+    reline (0.7.0)
       io-console (~> 0.5)
     rexml (3.4.4)
     rspec (3.13.2)
@@ -177,7 +177,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.7)
-    rubocop (1.88.2)
+    rubocop (1.89.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -257,4 +257,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-  4.0.17
+  4.0.18
