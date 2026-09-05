@@ -34,7 +34,7 @@ class SulOrcidClient
       self
     end
 
-    delegate :fetch_works, :fetch_work, :fetch_name, :search, :add_work, :update_work, :delete_work, to: :instance
+    delegate :fetch_record, :fetch_works, :fetch_work, :fetch_name, :search, :add_work, :update_work, :delete_work, to: :instance
   end
 
   attr_accessor :base_url, :base_public_url, :base_auth_url, :client_id, :client_secret
@@ -55,15 +55,27 @@ class SulOrcidClient
   # Fetches the name for a user given an orcidid
   # rubocop:disable Metrics/MethodLength
   def fetch_name(orcidid:)
-    match = /[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}/.match(orcidid)
-    raise 'invalid orcidid provided' unless match
+    orcid = match_orcid(orcidid)
 
-    response = public_conn.get("/v3.0/#{match[0]&.upcase}/personal-details")
+    response = public_conn.get("/v3.0/#{orcid}/personal-details")
     case response.status
     when 200
       resp_json = JSON.parse(response.body)
       [resp_json.dig('name', 'given-names', 'value'),
        resp_json.dig('name', 'family-name', 'value')]
+    else
+      raise "ORCID.org API returned #{response.status} (#{response.body}) for: #{orcidid}"
+    end
+  end
+
+  # Fetches the entire record for a user given an orcidid
+  def fetch_record(orcidid:)
+    orcid = match_orcid(orcidid)
+
+    response = public_conn.get("/v3.0/#{orcid}/record")
+    case response.status
+    when 200
+      JSON.parse(response.body)
     else
       raise "ORCID.org API returned #{response.status} (#{response.body}) for: #{orcidid}"
     end
@@ -170,6 +182,14 @@ class SulOrcidClient
   end
 
   private
+
+  def match_orcid(orcidid)
+    match = /[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}/.match(orcidid)
+
+    raise 'invalid orcidid provided' unless match
+
+    match[0]&.upcase
+  end
 
   def get(url)
     response = conn.get(url)
