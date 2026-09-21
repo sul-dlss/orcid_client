@@ -51,7 +51,7 @@ GEM
       super_diff
       thor
       zeitwerk (~> 2.1)
-    cocina_display (2.12.0)
+    cocina_display (2.13.0)
       activesupport (>= 7)
       edtf (~> 3.2)
       geo_coord (~> 0.2)
@@ -94,7 +94,7 @@ GEM
       activesupport (>= 3.0, < 9.0)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
-    faraday (2.14.3)
+    faraday (2.14.4)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -109,7 +109,7 @@ GEM
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    io-console (0.9.3)
+    io-console (0.9.4)
     iso8601 (0.13.0)
     janeway-jsonpath (1.1.0)
     json (3.0.2)
@@ -222,9 +222,9 @@ GEM
     thor (1.5.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (3.2.0)
-      unicode-emoji (~> 4.1)
-    unicode-emoji (4.2.0)
+    unicode-display_width (3.3.0)
+      unicode-emoji (~> 4.3)
+    unicode-emoji (4.3.0)
     uri (1.1.1)
     vcr (6.4.0)
     version_gem (1.1.15)
@@ -258,4 +258,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-  4.0.20
+  4.0.21
