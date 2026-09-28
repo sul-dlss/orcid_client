@@ -12,7 +12,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (8.1.3.1)
+    activesupport (8.1.4)
       base64
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.3.1)
@@ -113,11 +113,11 @@ GEM
     iso8601 (0.13.0)
     janeway-jsonpath (1.1.0)
     json (3.0.2)
-    jsonschema_rs (0.56.0-arm64-darwin)
+    jsonschema_rs (0.58.1-arm64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.56.0-x86_64-darwin)
+    jsonschema_rs (0.58.1-x86_64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.56.0-x86_64-linux)
+    jsonschema_rs (0.58.1-x86_64-linux)
       bigdecimal (>= 3.1, < 5)
     jwt (3.3.0)
       base64
@@ -160,7 +160,7 @@ GEM
     rack (3.2.7)
     rainbow (3.1.1)
     rake (13.4.2)
-    regexp_parser (2.12.0)
+    regexp_parser (2.13.0)
     reline (0.7.0)
       io-console (~> 0.5)
     rexml (3.4.4)
@@ -211,7 +211,7 @@ GEM
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
-    simplecov (1.3.0)
+    simplecov (1.3.1)
     snaky_hash (2.0.7)
       hashie (>= 0.1.0, < 6)
       version_gem (~> 1.1, >= 1.1.14)
