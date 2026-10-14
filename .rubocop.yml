@@ -6,12 +6,17 @@ plugins:
   - rubocop-rspec_rails
 
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 4.0
   DisplayCopNames: true
   SuggestExtensions: false
   Exclude:
     - bin/**
     - vendor/bundle/**/*
+
+# Development uses Ruby 4, but the gem still supports Ruby 3.2 consumers.
+Gemspec/RequiredRubyVersion:
+  Exclude:
+    - sul_orcid_client.gemspec
 
 # Per team developer playbook
 RSpec/MultipleMemoizedHelpers:
